@@ -4,14 +4,14 @@ from App import app
 import json
 import os
 import model
-
+from html import escape
 
 @app.route('/login')
 def login():
    if  not 'username' in session:
     return render_template('login.html')
    else:
-      redirect('/dashboard', 302)
+      return redirect('/dashboard', 302)
    
 
 @app.route('/dashboard')
@@ -98,7 +98,7 @@ def api_predict_from_log(filename):
 
       # model invocation
 
-      ia = model.invokModel(secure_filename("trained_model_inhanced_white_log"))
+      ia = model.invokModel(secure_filename("tfidf-rfc-test"))
 
       # preparing entry matrix to the trained model
       enrty_matrix = model.model_matrix(log_df,ia,tfidf_df)
@@ -113,10 +113,15 @@ def api_predict_from_log(filename):
                   labled_predictions.append(i)
 
       for i in range(0,len(log_df)):
-         log = list()
-         log.append(log_df['decoded_url'][i])
-         log.append(log_df['user_agent'][i])
-         log.append(labled_predictions[i])
+         #log = list()
+         log = {}
+         #log.append(log_df['decoded_url'][i])
+         log['id'] = i+1
+         log['url'] = escape(log_df['decoded_url'][i])
+         log['user_agent'] = escape(log_df['user_agent'][i])
+         log['prediction'] = labled_predictions[i]
+         #log.append(log_df['user_agent'][i])
+         #log.append(labled_predictions[i])
          logs.append(log)
 
       data = {"success": True, "predictions": logs}

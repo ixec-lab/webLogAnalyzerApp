@@ -74,7 +74,18 @@
 })()
 
 $(document).ready( function () {
-  $('#mytable').DataTable();
-} );
-let table = new DataTable('#mytable', {
+  $('#mytable').DataTable({
+    ajax: {
+      url: "/api/ia/prediction/test-log.txt",
+      type: "GET",
+      dataSrc: "predictions"
+    },
+    columns: [
+      {'data': 'id'},
+      {'data': 'url'},
+      {'data': 'user_agent'},
+      {'data': 'prediction'},
+      
+    ]
+  });
 });
