@@ -74,7 +74,33 @@
 })()
 
 $(document).ready( function () {
-  $('#mytable').DataTable({
+
+   const fileDropDown = $('#filedropdown');
+   var log_table;
+
+   $.ajax({
+    url: "/api/uploadedFiles",
+    type: "GET",
+    cache: false,
+    success: function(res){
+      files = JSON.parse(res);
+
+      if (files.success){
+        files.logs.forEach(function(file){
+          let option = '<option value="'+file+'">'+file+'</option>';
+          fileDropDown.append(option);
+        });
+
+      }else{
+        alert("Enable to load the file list");
+      }
+    },
+    error: function(err){
+
+    }
+   });
+
+   log_table = $('#mytable').DataTable({
     ajax: {
       url: "/api/ia/prediction/test-log.txt",
       type: "GET",
@@ -88,4 +114,28 @@ $(document).ready( function () {
       
     ]
   });
+
+  fileDropDown.on("change",function(e){
+    console.log(fileDropDown.val())
+    API_PATH = "/api/ia/prediction/"+fileDropDown.val();
+    log_table.destroy();
+    log_table.clear();
+
+    log_table = $('#mytable').DataTable({
+      ajax: {
+        url: API_PATH,
+        type: "GET",
+        dataSrc: "predictions"
+      },
+      columns: [
+        {'data': 'id'},
+        {'data': 'url'},
+        {'data': 'user_agent'},
+        {'data': 'prediction'},
+        
+      ]
+    });
+    
+   });
+
 });
