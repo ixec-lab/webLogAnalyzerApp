@@ -84,6 +84,30 @@ def listFiles():
       data = {"success": True, "logs": files}
       res = make_response(json.dumps(data))
       return res
+   
+@app.route('/api/ia/predictions/stats/<filename>')
+def stats(filename):
+   res = api_predict_from_log(filename)
+   #print(res.response[0])
+   prediction_stats = {'SQLI': 0, 'NORMAL': 0, 'XSS': 0, 'CMDINJ': 0, 'LFI': 0}
+   
+   for line in json.loads(res.response[0])['predictions']:
+      if line['prediction'] == 'SQLI':
+         prediction_stats['SQLI'] += 1
+      if line['prediction'] == 'NORMAL':
+         prediction_stats['NORMAL'] += 1
+      if line['prediction'] == 'XSS':
+         prediction_stats['XSS'] +=1
+      if line['prediction'] == 'CMDINJ':
+         prediction_stats['CMDINJ'] +=1
+      if line['prediction'] == 'LFI':
+         prediction_stats['LFI'] +=1
+
+      data = {'success': True, 'stats': prediction_stats}
+   
+   res = make_response(json.dumps(data))
+   return res
+         
     
 @app.route('/api/ia/prediction/<filename>', methods=['GET'])
 def api_predict_from_log(filename):

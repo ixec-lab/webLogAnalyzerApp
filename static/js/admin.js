@@ -1,41 +1,7 @@
 (() => {
   'use strict'
   feather.replace({ 'aria-hidden': 'true' })
-  const ctx = document.getElementById('myChart')
-  const myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: [
-        'LFI/RFI',
-        'SQLI',
-        'Comand Injection',
-        'XSS',
-        'XEE',
-        'SSTI',
-      ],
-      datasets: [{
-        data: [
-          9,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: true
-        },
-        tooltip: {
-          boxPadding: 5
-        }
-      }
-    }
-  })
+
   const ctv = document.getElementById('time')
   const time = new Chart(ctv, {
     type: 'line',
@@ -77,6 +43,8 @@ $(document).ready( function () {
 
    const fileDropDown = $('#filedropdown');
    var log_table;
+   var nuts;
+   const ctx = $("#myChart");
 
    $.ajax({
     url: "/api/uploadedFiles",
@@ -107,10 +75,10 @@ $(document).ready( function () {
       dataSrc: "predictions"
     },
     columns: [
-      {'data': 'id'},
-      {'data': 'url'},
-      {'data': 'user_agent'},
-      {'data': 'prediction'},
+      {'data': 'id','width': '5%'},
+      {'data': 'url','width': '45%'},
+      {'data': 'user_agent','width': '25%'},
+      {'data': 'prediction','width': '25%'},
       
     ]
   });
@@ -118,8 +86,10 @@ $(document).ready( function () {
   fileDropDown.on("change",function(e){
     console.log(fileDropDown.val())
     API_PATH = "/api/ia/prediction/"+fileDropDown.val();
-    log_table.destroy();
-    log_table.clear();
+    if (log_table !== undefined){
+      log_table.destroy();
+    }
+
 
     log_table = $('#mytable').DataTable({
       ajax: {
@@ -128,13 +98,72 @@ $(document).ready( function () {
         dataSrc: "predictions"
       },
       columns: [
-        {'data': 'id'},
-        {'data': 'url'},
-        {'data': 'user_agent'},
-        {'data': 'prediction'},
+        {'data': 'id','width': '5%'},
+        {'data': 'url','width': '55%'},
+        {'data': 'user_agent','width': '35%'},
+        {'data': 'prediction','width': '5%'},
         
       ]
     });
+
+
+    $.ajax({
+      url: '/api/ia/predictions/stats/'+fileDropDown.val(),
+      type: "GET",
+      cache: false,
+      success: function(res){
+        ia = JSON.parse(res);
+  
+        if (ia.success){
+          
+          if (nuts !== undefined){
+            console.log("undif")
+            nuts.destroy();
+          }
+            console.log("chart")
+             nuts = new Chart(ctx, {
+              type: 'doughnut',
+              data: {
+                labels: [
+                  'NORMAL',
+                  'LFI/RFI',
+                  'SQLI',
+                  'Comand Injection',
+                  'XSS',
+                ],
+                datasets: [{
+                  data: [
+                    ia.stats.NORMAL,
+                    ia.stats.LFI,
+                    ia.stats.SQLI,
+                    ia.stats.CMDINJ,
+                    ia.stats.XSS
+                  ],
+                }]
+              },
+              options: {
+                plugins: {
+                  legend: {
+                    display: true
+                  },
+                  tooltip: {
+                    boxPadding: 5
+                  }
+                }
+              }
+            });
+          
+
+        }else{
+          alert("Enable to load chart data");
+        }
+      },
+      error: function(err){
+  
+      }
+     });
+
+
     
    });
 
