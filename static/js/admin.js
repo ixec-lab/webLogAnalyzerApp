@@ -76,7 +76,8 @@ $(document).ready( function () {
     },
     columns: [
       {'data': 'id','width': '5%'},
-      {'data': 'url','width': '45%'},
+      {'data': 'date','width': '15%'},
+      {'data': 'url','width': '40%'},
       {'data': 'user_agent','width': '25%'},
       {'data': 'prediction','width': '25%'},
       
@@ -99,7 +100,8 @@ $(document).ready( function () {
       },
       columns: [
         {'data': 'id','width': '5%'},
-        {'data': 'url','width': '55%'},
+        {'data': 'date','width': '15%'},
+        {'data': 'url','width': '40%'},
         {'data': 'user_agent','width': '35%'},
         {'data': 'prediction','width': '5%'},
         
