@@ -126,15 +126,17 @@ def api_predict_from_log(filename):
          log_df = model.convert_val(log_df,'response_size',int)
          log_df = model.drop_columns(log_df,['ip','someVar','user', 'protocol', 'refrer'])
          log_df = model.url_decode(log_df,'url')
+         lof_df = model.normalize(log_df)
          log_df = model.url_lowercase(log_df,'decoded_url')
          tfidf_df = model.tfidfCalculator(log_df)
-         print(log_df)
          # model invocation
 
          ia = model.invokModel(secure_filename("tfidf-rfc-test"))
+         #ia = model.invokModel(secure_filename("testModel"))
 
          # preparing entry matrix to the trained model
          enrty_matrix = model.model_matrix(log_df,ia,tfidf_df)
+
          predictions = ia.predict(enrty_matrix)
 
          labels = {"SQLI": 2.0, "XSS": 4.0, "LFI": 1.0, "CMDINJ": 0.0, "NORMAL": 3.0}

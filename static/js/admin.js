@@ -74,6 +74,10 @@ $(document).ready( function () {
       type: "GET",
       dataSrc: "predictions"
     },
+    dom: 'Bfrtip',
+    buttons: [
+        'csv', 'excel'
+    ],
     columns: [
       {'data': 'id','width': '5%'},
       {'data': 'date','width': '15%'},
@@ -98,6 +102,10 @@ $(document).ready( function () {
         type: "GET",
         dataSrc: "predictions"
       },
+      dom: 'Bfrtip',
+      buttons: [
+        'csv', 'excel'
+      ],
       columns: [
         {'data': 'id','width': '5%'},
         {'data': 'date','width': '15%'},
