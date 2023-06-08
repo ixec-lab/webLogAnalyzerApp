@@ -29,6 +29,19 @@ def results():
    else:
       return redirect('/dashboard', 302)
 
+@app.route('/dashboard/anomaly')
+def anomaly():
+   if 'username' in session:
+      return render_template('anomaly.html')
+   else:
+      return redirect('/dashboard', 302)
+
+@app.route('/dashboard/status')
+def status():
+   if 'username' in session:
+      return render_template('stat.html')
+   else:
+      return redirect('/dashboard', 302)
 
 @app.route('/logout')
 def logout():

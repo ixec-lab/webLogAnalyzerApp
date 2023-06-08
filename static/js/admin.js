@@ -84,7 +84,6 @@ $(document).ready( function () {
       {'data': 'url','width': '40%'},
       {'data': 'user_agent','width': '25%'},
       {'data': 'prediction','width': '25%'},
-      
     ]
   });
 
@@ -94,7 +93,6 @@ $(document).ready( function () {
     if (log_table !== undefined){
       log_table.destroy();
     }
-
 
     log_table = $('#mytable').DataTable({
       ajax: {
@@ -112,7 +110,6 @@ $(document).ready( function () {
         {'data': 'url','width': '40%'},
         {'data': 'user_agent','width': '35%'},
         {'data': 'prediction','width': '5%'},
-        
       ]
     });
 
@@ -163,7 +160,6 @@ $(document).ready( function () {
               }
             });
           
-
         }else{
           alert("Enable to load chart data");
         }

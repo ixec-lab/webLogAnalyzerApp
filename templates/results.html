@@ -17,7 +17,7 @@
   <body>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-1 me-0 px-3 fs-6 text-center" href="#">CPP</a>
+  <a class="navbar-brand col-md-3 col-lg-1 me-0 px-3 fs-6 text-center" href="#">MDP</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -46,9 +46,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="anomaly.html">
+            <a class="nav-link" href="/dashboard/anomaly">
               <span data-feather="bar-chart-2" class="align-text-bottom"></span>
               Anomaly
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard/status">
+              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+              Status
             </a>
           </li>
         </ul>
@@ -57,13 +63,25 @@
 
     <main class="col-md-10 ms-sm-auto col-lg-11 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Choose a log file to analyze: </h1>
+        <h1 class="h2">Choose a log file to analyze :</h1>
       </div>
         <div class="row">
-          <div class="col-md-10">
+          <div class="col-md-6">
+            <p>Choose your log file :</p>
             <form>
               <select name="filelog" class="form-select" id="filedropdown">
                 <option value="None">Select a log file</option>
+              </select>
+            </form>
+          </div>
+          <div class="col-md-6">
+            <p>Choose the Model :</p>
+            <form>
+              <select name="model" class="form-select" id="modeldropdown">
+                <option value="None">Random Forest</option>
+                <option>Decision Tree</option>
+                <option>KNN</option>
+                <option>SVM</option>
               </select>
             </form>
           </div>
@@ -76,7 +94,7 @@
             <table id="mytable" class="display" style="width:100%">
               <thead>
                 <tr>
-                  <th>Ud</th>
+                  <th>Id</th>
                   <th>Date</th>
                   <th>Url</th>
                   <th>User Agent</th>
@@ -85,28 +103,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>0</td>
-                  <th>Date</th>
-                  <td>/app1/index.php?user=admin'+or+1=1+--</td>
-                  <td>Mozilla/5.0 (Linux; Android 10; SM-G996U Build/QP1A.190711.020; wv)</td>
-                  <td>SQLI</td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </div>
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-top">
-          <h1 class="h2">Graphs & stats</h1>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-md-4">
-            <label class="form-label" style="font-size: large;">Attacks</label>
-            <canvas class="my-4 w-100" id="myChart"></canvas>
-          </div>
-          <div class="col-md-8">
-            <label class="form-label" style="font-size: large;">Time of attacks</label>
-            <canvas class="my-4 w-100" id="time"></canvas>
-          </div> 
         </div>
       </div>
     </main>
@@ -119,6 +119,5 @@
     <script src="../static/DataTables/datatables.js"></script>
     <script src="../static/js/admin.js"></script>
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/b-2.3.6/b-html5-2.3.6/datatables.min.js"></script>
-
 </body>
 </html>
