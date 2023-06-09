@@ -137,7 +137,7 @@ def api_predict_from_log(filename):
          log_df = model.log2dataframe(parsedLog)
          log_df = model.replace_val(log_df,'-', 0)
          log_df = model.convert_val(log_df,'response_size',int)
-         log_df = model.drop_columns(log_df,['ip','someVar','user', 'protocol', 'refrer'])
+         log_df = model.drop_columns(log_df,['someVar','user', 'protocol', 'refrer'])
          log_df = model.url_decode(log_df,'url')
          lof_df = model.normalize(log_df)
          log_df = model.url_lowercase(log_df,'decoded_url')
@@ -164,6 +164,7 @@ def api_predict_from_log(filename):
             log = {}
 
             log['id'] = i+1
+            log['ip'] = log_df['ip'][i]
             log['date'] = log_df['date'][i]
             log['url'] = escape(log_df['decoded_url'][i])
             log['user_agent'] = escape(log_df['user_agent'][i])
