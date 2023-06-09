@@ -1,42 +1,6 @@
 (() => {
   'use strict'
   feather.replace({ 'aria-hidden': 'true' })
-
-  const ctv = document.getElementById('time')
-  const time = new Chart(ctv, {
-    type: 'line',
-    data: {
-      labels: [
-        'LFI/RFI',
-        'SQLI',
-        'Comand Injection',
-        'XSS',
-        'XEE',
-        'SSTI',
-      ],
-      datasets: [{
-        data: [
-          9,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          boxPadding: 5
-        }
-      }
-    }
-  })
 })()
 
 $(document).ready( function () {
@@ -44,8 +8,9 @@ $(document).ready( function () {
    const fileDropDown = $('#filedropdown');
    var log_table;
    var nuts;
+   var time;
    const ctx = $("#myChart");
-
+   const ctv = $("#time");
    $.ajax({
     url: "/api/uploadedFiles",
     type: "GET",
@@ -123,9 +88,10 @@ $(document).ready( function () {
   
         if (ia.success){
           
-          if (nuts !== undefined){
+          if (nuts !== undefined && time !== undefined){
             console.log("undif")
             nuts.destroy();
+            time.destroy();
           }
             console.log("chart")
              nuts = new Chart(ctx, {
@@ -152,6 +118,41 @@ $(document).ready( function () {
                 plugins: {
                   legend: {
                     display: true
+                  },
+                  tooltip: {
+                    boxPadding: 5
+                  }
+                }
+              }
+            });
+
+            /* graph X Y */
+
+            
+            time = new Chart(ctv, {
+              type: 'line',
+              data: {
+                labels: [
+                  'NORMAL',
+                  'LFI/RFI',
+                  'SQLI',
+                  'Comand Injection',
+                  'XSS',
+                ],
+                datasets: [{
+                  data: [
+                    ia.stats.NORMAL,
+                    ia.stats.LFI,
+                    ia.stats.SQLI,
+                    ia.stats.CMDINJ,
+                    ia.stats.XSS
+                  ],
+                }]
+              },
+              options: {
+                plugins: {
+                  legend: {
+                    display: false
                   },
                   tooltip: {
                     boxPadding: 5
