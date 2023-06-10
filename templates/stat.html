@@ -1,18 +1,11 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.111.3">
     <title>CERIST - Admin</title>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
+    <link rel="icon" href="../static/img/logo1.png">
     <link href="../static/bootstrap-5.2.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../static/css/admin.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/DataTables/DataTables-1.13.4/css/dataTables.bootstrap5.css" />
-    <link rel="stylesheet" href="../static/DataTables/datatables.css" />
-    <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/b-2.3.6/b-html5-2.3.6/datatables.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../static/css/style.css" />
   </head>
   <body>
 
@@ -27,7 +20,6 @@
     </div>
   </div>
 </header>
-
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-1 d-md-block bg-body-tertiary sidebar collapse">
@@ -35,25 +27,25 @@
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link" href="/dashboard">
-              <span data-feather="home" class="align-text-bottom"></span>
+              <span data-feather="file-plus" class="align-text-bottom"></span>
               Upload
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" aria-current="page"  href="/dashboard/results">
-              <span data-feather="file" class="align-text-bottom"></span>
+              <span data-feather="activity" class="align-text-bottom"></span>
               Result
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/dashboard/anomaly">
-              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+              <span data-feather="alert-triangle" class="align-text-bottom"></span>
               Anomaly
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="#">
-              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+              <span data-feather="pie-chart" class="align-text-bottom"></span>
               Stats
             </a>
           </li>
@@ -62,7 +54,7 @@
     </nav>
 
     <main class="col-md-10 ms-sm-auto col-lg-11 px-md-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Choose a log file to show stats :</h1>
         </div>
             <div class="row">
@@ -73,30 +65,60 @@
                   </select>
                 </form>
               </div>
-            </div>
+            </div> -->
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">Graphs & stats</h1>
         </div>
-        <div class="row border-bottom">
-          <div class="col-md-4">
-            <label class="form-label" style="font-size: large;">Attacks</label>
-            <canvas class="my-4 w-100" id="myChart"></canvas>
+        <section id="counts" class="counts mb-3">
+          <div class="container aos-init aos-animate">
+            <div class="row gy-4">
+              <div class="col-lg-4 col-md-6">
+                <div class="count-box bg-danger rounded-4">
+                  <i class="bi bi-emoji-smile"></i>
+                  <div>
+                    <span class="purecounter">19</span>
+                    <p style="color: white;">Attacks</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div class="count-box bg-warning rounded-4">
+                  <i class="bi bi-journal-richtext"></i>
+                  <div>
+                    <span class="purecounter">0</span>
+                    <p style="color: white;">Anomalys</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div class="count-box bg-primary rounded-4">
+                  <i class="bi bi-people"></i>
+                  <div>
+                    <span  class="purecounter">8</span>
+                    <p style="color: white;">White Traffic</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-md-8">
-            <label class="form-label" style="font-size: large;">Attacks count</label>
-            <canvas class="my-4 w-100" id="time"></canvas>
-          </div> 
-        </div>
+        </section>
+        <div class="aos-init aos-animate">
+          <div class="row border-bottom">
+            <div class="col-lg-8">
+              <canvas class="my-4 w-100" id="time"></canvas>
+            </div>
+            <div class="col-lg-4">
+              <canvas class="my-4 w-100" id="myChart"></canvas>
+            </div>
+          </div>
+        </div> 
       </div>
     </main>
   </div>
 </div>
     <script src="../static/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script>
-    <script src="../static/DataTables/datatables.min.js"></script>
-    <script src="../static/DataTables/datatables.js"></script>
-    <script src="../static/js/admin.js"></script>
-    <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/b-2.3.6/b-html5-2.3.6/datatables.min.js"></script>
+    <script src="../static/js/cdn.jsdelivr.net_npm_feather-icons@4.28.0_dist_feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="../static/js/cdn.jsdelivr.net_npm_chart.js@4.2.1_dist_chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script>
+    <script src="../static/js/stat.js"></script>
 </body>
 </html>
