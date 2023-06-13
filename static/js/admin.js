@@ -101,9 +101,9 @@ $(document).ready( function () {
               data: {
                 labels: [
                   'NORMAL',
-                  'LFI/RFI',
+                  'LFI',
                   'SQLI',
-                  'Comand Injection',
+                  'COMINJ',
                   'XSS',
                 ],
                 datasets: [{
@@ -119,7 +119,8 @@ $(document).ready( function () {
               options: {
                 plugins: {
                   legend: {
-                    display: true
+                    display: true,
+                    position: 'right'
                   },
                   tooltip: {
                     boxPadding: 5
@@ -132,13 +133,13 @@ $(document).ready( function () {
 
             
             time = new Chart(ctv, {
-              type: 'line',
+              type: 'bar',
               data: {
                 labels: [
                   'NORMAL',
-                  'LFI/RFI',
+                  'LFI',
                   'SQLI',
-                  'Comand Injection',
+                  'COMINJ',
                   'XSS',
                 ],
                 datasets: [{
@@ -177,3 +178,36 @@ $(document).ready( function () {
    });
 
 });
+
+(() => {
+  'use strict'
+
+  feather.replace({ 'aria-hidden': 'true' })
+  const ctx = document.getElementById('myChart2')
+  const myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: [
+        'NORMAL',
+        'ANOMALY',
+      ],
+      datasets: [{
+        data: [
+          6,
+          21
+        ],
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: true,
+          position: 'right'
+        },
+        tooltip: {
+          boxPadding: 5
+        }
+      }
+    }
+  })
+})()

@@ -26,19 +26,19 @@
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link" href="/dashboard">
-                  <span data-feather="home" class="align-text-bottom"></span>
+                  <span data-feather="file-plus" class="align-text-bottom"></span>
                   Upload
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/dashboard/results">
-                  <span data-feather="file" class="align-text-bottom" ></span>
+                  <span data-feather="activity" class="align-text-bottom" ></span>
                   Result
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="#">
-                  <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+                  <span data-feather="alert-circle" class="align-text-bottom"></span>
                   Anomaly
                 </a>
               </li>
@@ -64,7 +64,7 @@
                   </select>
                 </form>
               </div>
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                 <p>Choose the Model :</p>
                 <form>
                   <select name="model" class="form-select" id="modeldropdown">
@@ -74,47 +74,49 @@
                     <option>SVM</option>
                   </select>
                 </form>
-              </div>
+              </div> -->
             </div>
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Anomaly</h1>
           </div>
-          <div class="table-responsive">
+          <div class="table-responsive mb-3">
             <table id="mytable" class="display">
               <thead>
                 <tr>
+                  <th>Id</th>
+                  <th>Ip</th>
+                  <th>Date</th>
                   <th>Url</th>
                   <th>User Agent</th>
                   <th>Classification</th>
+                  <th>Anomaly</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>/app1/index.php?user=admin'+or+1=1+--</td>
-                  <td>Mozilla/5.0 (Linux; Android 10; SM-G996U Build/QP1A.190711.020; wv)</td>
-                  <td>
-                    <button type="button" class="btn btn-secondary" style="font-size: 75%;">Ignor</button>
-                    <button type="button" class="btn btn-danger" style="font-size: 75%;">Anomaly</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>/app1/index.php?user=admin'+or+1=1+--</td>
-                  <td>Mozilla/5.0 (Linux; Android 10; SM-G996U Build/QP1A.190711.020; wv)</td>
-                  <td>
-                    <button type="button" class="btn btn-secondary" style="font-size: 75%;">Ignor</button>
-                    <button type="button" class="btn btn-danger" data-bs-placement="left" style="font-size: 75%;" data-bs-toggle="modal" data-bs-target="#staticBackdropLive">Anomaly</button>
-                  </td>
-                </tr>
-              </tbody>
             </table>
           </div>
-        </div>
+          <div class="row pt-2 mb-3">
+            <div class="col-md-8">
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-md btn-danger">Store As :</button>
+            </div>
+            <div class="col-md-2">
+              <select class="w-100 form-select form-select-sm">
+                <option selected="">Select your attaque</option>
+                <option value="SQLI">Sql Injection</option>
+                <option value="NORMAL">Valid</option>
+                <option value="XSS">Xss</option>
+                <option value="COMINJ">Command Injection</option>
+                <option value="LFI">Lfi</option>
+              </select>
+            </div>
+          </div>
         </main>
       </div>
     </div>
     <script src="../static/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script>
+    <script src="../static/js/cdn.jsdelivr.net_npm_feather-icons@4.28.0_dist_feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="../static/js/cdn.jsdelivr.net_npm_chart.js@4.2.1_dist_chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script>
     <script src="../static/DataTables/jQuery-3.6.0/jquery-3.6.0.js"></script>
     <script src="../static/DataTables/datatables.js"></script>
     <script src="../static/js/admin.js"></script>
