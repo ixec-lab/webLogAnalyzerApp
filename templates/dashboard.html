@@ -9,65 +9,62 @@
     <link rel="stylesheet" href="../static/alertify/css/themes/default.min.css" />
   </head>
   <body>
-
-<header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-1 me-0 px-3 fs-4 text-center font" href="/">MDP</a>
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link navbar-brand px-2 fs-5" href="/logout">Sign out</a>
-    </div>
-  </div>
-</header>
-
-<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-1 d-md-block bg-body-tertiary sidebar collapse ">
-      <div class="position-sticky pt-3 sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">
-              <span data-feather="file-plus" class="align-text-bottom"></span>
-              Upload
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="dashboard/results">
-              <span data-feather="activity" class="align-text-bottom"></span>
-              Result
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/dashboard/anomaly">
-              <span data-feather="alert-circle" class="align-text-bottom"></span>
-              Anomaly
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/dashboard/status">
-              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-              Stats
-            </a>
-          </li>
-        </ul>
+    <header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 col-lg-1 me-0 px-3 fs-4 text-center font" href="/">MDP</a>
+      <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+          <a class="nav-link navbar-brand px-2 fs-5" href="/logout">Sign out</a>
+        </div>
       </div>
-    </nav>
-
-    <main class="col-md-10 ms-sm-auto col-lg-11 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="">Upload</h1>
-      </div>
+    </header>
+    <div class="container-fluid">
       <div class="row">
-        <label class="form-label" style="font-size: large;">Upload your log file: </label>
-        <div class="col-md-8">
-            <input type="file" class="form-control" id="logfile">
-        </div>
-        <div class="col-md-4">
-          <button class="w-50 btn btn-primary btn-primary" type="submit" id="send_file">Upload</button>
-        </div>
+        <nav id="sidebarMenu" class="col-md-3 col-lg-1 d-md-block bg-body-tertiary sidebar collapse ">
+          <div class="position-sticky pt-3 sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  <span data-feather="file-plus" class="align-text-bottom"></span>
+                  Upload
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="dashboard/results">
+                  <span data-feather="activity" class="align-text-bottom"></span>
+                  Result
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/anomaly">
+                  <span data-feather="alert-circle" class="align-text-bottom"></span>
+                  Anomaly
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/status">
+                  <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+                  Stats
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <main class="col-md-10 ms-sm-auto col-lg-11 px-md-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="">Upload</h1>
+          </div>
+          <div class="row">
+            <label class="form-label" style="font-size: large;">Upload your log file: </label>
+            <div class="col-md-8">
+                <input type="file" class="form-control" id="logfile">
+            </div>
+            <div class="col-md-4">
+              <button class="w-50 btn btn-primary btn-primary" type="submit" id="send_file">Upload</button>
+            </div>
+          </div>
+        </main>
       </div>
-    </main>
-  </div>
-</div>
+    </div>
     <script src="../static/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../static/js/cdn.jsdelivr.net_npm_feather-icons@4.28.0_dist_feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
     <script src="../static/js/cdn.jsdelivr.net_npm_chart.js@4.2.1_dist_chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script>
@@ -75,38 +72,38 @@
     <script src="../static/alertify/alertify.min.js"></script>
     <script src="../static/js/admin.js"></script>
     <script>
-        $(document).ready(function(){
-        const btn = $('#send_file');
+          $(document).ready(function(){
+          const btn = $('#send_file');
 
-        btn.on('click',function(event){
-          event.preventDefault();
+          btn.on('click',function(event){
+            event.preventDefault();
 
-          let logfile = $('#logfile')[0];
-          const fd = new FormData()
-          fd.append("log", logfile.files[0]);
+            let logfile = $('#logfile')[0];
+            const fd = new FormData()
+            fd.append("log", logfile.files[0]);
 
-          $.ajax({
-            url: "/api/upload",
-            type: "POST",
-            contentType: false,
-            cache: false,
-            processData:false,
-            data: fd,
-            success: function(res){
-              r = JSON.parse(res);
-              if (r.success){
-                var notification = alertify.notify(r.message, 'success', 5);
+            $.ajax({
+              url: "/api/upload",
+              type: "POST",
+              contentType: false,
+              cache: false,
+              processData:false,
+              data: fd,
+              success: function(res){
+                r = JSON.parse(res);
+                if (r.success){
+                  var notification = alertify.notify(r.message, 'success', 5);
+                }
+                else{
+                  var notification = alertify.notify(r.message, 'error', 5);
+                }
+              },
+              error: function(err){
+                alert("INTERNAL ERROR");
               }
-              else{
-                var notification = alertify.notify(r.message, 'error', 5);
-              }
-            },
-            error: function(err){
-              alert("INTERNAL ERROR");
-            }
-          });
-        })
-      });
+            });
+          })
+        });
     </script>
-</body>
+  </body>
 </html>
