@@ -55,9 +55,15 @@
           </div>
           <div class="row">
             <label class="form-label" style="font-size: large;">Upload your log file: </label>
-            <div class="col-md-8">
-                <input type="file" class="form-control" id="logfile">
+            <div class="container">
+                <div class="upload-container">
+                  <div class="border-container">
+                    <input type="file" id="logfile" class="w-100">
+                  </div>
+                </div>
+                <p>Drag and drop your files here, or <a id="file-browser">browse</a> your computer.</p>
             </div>
+
             <div class="col-md-4">
               <button class="w-50 btn btn-primary btn-primary" type="submit" id="send_file">Upload</button>
             </div>

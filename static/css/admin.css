@@ -83,3 +83,34 @@
     font-weight: bolder;
     font-size: 25px;
   }
+  
+  .upload-container {
+    background-color: rgb(239, 239, 239);
+    border-radius: 6px;
+    padding: 10px;
+  }
+  
+  .border-container {
+    border: 5px dashed rgba(198, 198, 198, 0.65);
+    padding: 20px;
+  }
+  
+  .container p {
+    font-weight: 600;
+    font-size: 18px;
+  }
+  
+  .icons {
+    color: #95afc0;
+    opacity: 0.55;
+  }
+
+  #file-browser {
+    text-decoration: none;
+    color: rgb(0, 21, 253);
+  }
+
+  #file-browser:hover {
+    color: rgb(0, 0, 153);
+    border-bottom: 3px dotted rgba(0, 0, 153);
+  }

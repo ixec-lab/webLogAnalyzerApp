@@ -8,10 +8,7 @@ from html import escape
 
 @app.route('/')
 def home():
-   if not 'username' in session:
-      return render_template('home.html')
-   else:
-      return redirect('/login', 302)
+   return render_template('home.html')
 
 @app.route('/login')
 def login():
