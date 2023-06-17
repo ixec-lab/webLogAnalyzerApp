@@ -14,6 +14,13 @@ def login():
       return redirect('/dashboard', 302)
    
 
+@app.route('/')
+def home():
+   if 'username' in session:
+      return render_template('home.html')
+   else:
+      return redirect('/login', 302)
+
 @app.route('/dashboard')
 def dashboard():
    if 'username' in session:
