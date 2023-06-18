@@ -50,7 +50,7 @@ def status():
 def logout():
    if 'username' in session:
       session.pop('username')
-      return redirect('/login', 302)
+      return redirect('/', 302)
    else:
       return redirect('/login', 302)
 

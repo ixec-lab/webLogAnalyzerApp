@@ -51,21 +51,18 @@
         </nav>
         <main class="col-md-10 ms-sm-auto col-lg-11 px-md-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="">Upload</h1>
+            <h1 class="">Upload Your File</h1>
           </div>
           <div class="row">
-            <label class="form-label" style="font-size: large;">Upload your log file: </label>
-            <div class="container">
-                <div class="upload-container">
-                  <div class="border-container p-5">
-                    <input type="file" id="logfile" class="w-100">
-                  </div>
-                </div>
-                <p>Drag and drop your files here, or <a id="file-browser">browse</a> your computer.</p>
+            <div class="col-md-2">
             </div>
-
-            <div class="col-md-4">
-              <button class="w-50 btn btn-primary btn-primary" type="submit" id="send_file">Upload</button>
+            <div class="col-md-8">
+              <form>
+                <div class="form-group files color">
+                  <input id="logfile" type="file" class="form-control" multiple="">
+                </div>
+                <button class="w-100 btn btn-primary mt-3" type="submit" id="send_file">Upload</button>
+              </form>
             </div>
           </div>
         </main>

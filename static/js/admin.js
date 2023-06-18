@@ -211,10 +211,3 @@ $(document).ready( function () {
     }
   })
 })()
-
-$("#logfile").css("opacity", "0");
-
-$("#file-browser").click(function(e) {
-  e.preventDefault();
-  $("#logfile").trigger("click");
-});

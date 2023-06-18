@@ -3,7 +3,7 @@ body {
   
   height: 100%;
   background-color: #22397c;
-  background-image: linear-gradient(180deg,#6c7aff 10%,#3a64fe 100%);
+  background-image: linear-gradient(180deg,#4355ff 10%,#0049f4 100%);
   background-size: cover;
 }
 
@@ -48,4 +48,27 @@ body {
 
 .T3{
   padding-top: 15%;
+}
+
+@font-face {
+  font-family: Anton_Regular;
+  src: url(../font/Pacifico-Regular.ttf);
+}
+@font-face {
+  font-family: Ysabeau;
+  src: url(../font/Poppins-Regular.ttf);
+}
+
+.font {
+  font-family: Anton_Regular ;
+  font-size: 50px;
+}
+
+body{
+  font-family: Ysabeau;
+}
+
+h1 {
+  font-weight: bolder;
+  font-size: 25px;
 }
