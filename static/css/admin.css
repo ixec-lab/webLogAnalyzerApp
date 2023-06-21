@@ -87,7 +87,7 @@
   .files input {
     -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
     transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    padding: 120px 0px 85px 35%;
+    padding: 120px 0px 85px 0%;
     text-align: center !important;
     margin: 0;
     width: 100% !important;
@@ -111,7 +111,8 @@
 .files:before {
     position: absolute;
     bottom: 10px;
-    left: 0;  pointer-events: none;
+    left: 0;  
+    pointer-events: none;
     width: 100%;
     right: 0;
     height: 57px;
