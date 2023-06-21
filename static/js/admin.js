@@ -1,10 +1,14 @@
-(() => {
-  'use strict'
-  feather.replace({ 'aria-hidden': 'true' })
-})()
+
 
 $(document).ready( function () {
 
+
+  (() => {
+    'use strict'
+    feather.replace({ 'aria-hidden': 'true' })
+  })()
+
+  
    const fileDropDown = $('#filedropdown');
    var log_table;
    var nuts;
@@ -179,10 +183,6 @@ $(document).ready( function () {
 
 });
 
-(() => {
-  'use strict'
-
-  feather.replace({ 'aria-hidden': 'true' })
   const ctx = document.getElementById('myChart2')
   const myChart = new Chart(ctx, {
     type: 'doughnut',
@@ -210,4 +210,3 @@ $(document).ready( function () {
       }
     }
   })
-})()
