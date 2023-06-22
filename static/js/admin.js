@@ -13,8 +13,10 @@ $(document).ready( function () {
    var log_table;
    var nuts;
    var time;
+   var anomaly_chart;
    const ctx = $("#myChart");
    const ctv = $("#time");
+   const anom = $("#anomaly_chart")
    $.ajax({
     url: "/api/uploadedFiles",
     type: "GET",
@@ -174,6 +176,8 @@ $(document).ready( function () {
                 }
               }
             });
+
+
           
         }else{
           alert("Enable to load chart data");
@@ -183,37 +187,57 @@ $(document).ready( function () {
   
       }
      });
+     
+    /* anomaly chart data */
+
+     $.ajax({
+      url: '/api/ia/anomaly/stats/'+fileDropDown.val(),
+      type: "GET",
+      cache: false,
+      success: function(res){
+        ia = JSON.parse(res);
+
+        if (ia.success){
+          if (anomaly_chart !== undefined){
+            anomaly_chart.destroy();
+          }
 
 
+            /* anomaly chart rednring */
+
+            
+            anomaly_chart = new Chart(anom, {
+              type: 'doughnut',
+              data: {
+                labels: [
+                  'VALID',
+                  'ANOMALY',
+                ],
+                datasets: [{
+                  data: [
+                    ia.stats.Valid,
+                    ia.stats.Anomaly
+                  ],
+                }]
+              },
+              options: {
+                plugins: {
+                  legend: {
+                    display: true,
+                    position: 'right'
+                  },
+                  tooltip: {
+                    boxPadding: 0
+                  }
+                }
+              }
+            })
+        }
+      }
+      
+    
+    });
     
    });
 
 });
-
-  const ctx = document.getElementById('myChart2')
-  const myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: [
-        'NORMAL',
-        'ANOMALY',
-      ],
-      datasets: [{
-        data: [
-          6,
-          21
-        ],
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: true,
-          position: 'right'
-        },
-        tooltip: {
-          boxPadding: 0
-        }
-      }
-    }
-  })

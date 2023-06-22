@@ -293,3 +293,20 @@ def api_conflit_handler(filename):
    else:
       data = {"success": False, "message": "Your are not authorized to use this service, please contact your administrator."}
       return make_response(json.dumps(data))
+   
+@app.route('/api/ia/anomaly/stats/<filename>')
+def stats_anomaly(filename):
+   res = api_anomaly_from_log(filename)
+   #print(res.response[0])
+   clustring_stats = {'Anomaly': 0, 'Valid': 0}
+   
+   for line in json.loads(res.response[0])['clusters']:
+      if line == "Anomaly":
+         clustring_stats['Anomaly'] += 1
+      else:
+         clustring_stats['Valid'] += 1
+
+      data = {'success': True, 'stats': clustring_stats}
+   
+   res = make_response(json.dumps(data))
+   return res
