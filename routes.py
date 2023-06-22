@@ -269,15 +269,17 @@ def api_conflit_handler(filename):
          for i in range(0,len(log_df)):
             log = {}
 
-            log['id'] = i+1
-            log['ip'] = log_df['ip'][i]
-            log['date'] = log_df['date'][i]
-            log['url'] = escape(log_df['decoded_url'][i])
-            log['user_agent'] = escape(log_df['user_agent'][i])
-            log['prediction'] = labled_predictions[i]
-            log['cluster'] = labled_cluster[i]
+            if labled_cluster[i] == 'Anomaly' and labled_predictions[i] == 'NORMAL' or labled_cluster[i] == "Valid" and (labled_predictions[i] == 'SQLI' or labled_predictions[i] == "XSS" or labled_predictions[i] == "LFI" or labled_predictions[i] == "CMDINJ"):
 
-            logs.append(log)
+               log['id'] = i+1
+               log['ip'] = log_df['ip'][i]
+               log['date'] = log_df['date'][i]
+               log['url'] = escape(log_df['decoded_url'][i])
+               log['user_agent'] = escape(log_df['user_agent'][i])
+               log['prediction'] = labled_predictions[i]
+               log['cluster'] = labled_cluster[i]
+
+               logs.append(log)
 
          data = {"success": True, "predictions": logs}
 
