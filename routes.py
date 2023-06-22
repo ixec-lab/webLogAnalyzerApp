@@ -7,10 +7,6 @@ import model
 import anomaly_model
 from html import escape
 
-@app.route('/')
-def home():
-   return render_template('home.html')
-
 @app.route('/login')
 def login():
    if  not 'username' in session:
