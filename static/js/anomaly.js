@@ -6,9 +6,7 @@
 $(document).ready( function () {
 
    const fileDropDown = $('#filedropdown');
-   var log_table;
-   var nuts;
-   const ctx = $("#mytable");
+   var anomaly;
 
    $.ajax({
     url: "/api/uploadedFiles",
@@ -32,9 +30,9 @@ $(document).ready( function () {
     }
    });
 
-   log_table = $('#mytable').DataTable({
+   anomaly = $('#anomaly').DataTable({
     ajax: {
-      url: "/api/ia/prediction/test-log.txt",
+      url: "/api/ia/conflit/prod_logs.txt",
       type: "GET",
       dataSrc: "predictions"
     },
@@ -44,67 +42,42 @@ $(document).ready( function () {
     ],
     columns: [
       {'data': 'id','width': '5%'},
+      {'data': 'ip','width': '5%'},
       {'data': 'date','width': '15%'},
       {'data': 'url','width': '40%'},
       {'data': 'user_agent','width': '25%'},
       {'data': 'prediction','width': '25%'},
+      {'data': 'cluster','width': '25%'},
     ]
   });
 
+  fileDropDown.on("change",function(e){
+    API_PATH = "/api/ia/conflit/"+fileDropDown.val();
+    if (anomaly !== undefined){
+      anomaly.destroy();
+    }
 
-    $.ajax({
-      url: '/api/ia/predictions/stats/'+fileDropDown.val(),
-      type: "GET",
-      cache: false,
-      success: function(res){
-        ia = JSON.parse(res);
-  
-        if (ia.success){
-          
-          if (nuts !== undefined){
-            console.log("undif")
-            nuts.destroy();
-          }
-            console.log("chart")
-             nuts = new Chart(ctx, {
-              type: 'doughnut',
-              data: {
-                labels: [
-                  'NORMAL',
-                  'LFI/RFI',
-                  'SQLI',
-                  'Comand Injection',
-                  'XSS',
-                ],
-                datasets: [{
-                  data: [
-                    ia.stats.NORMAL,
-                    ia.stats.LFI,
-                    ia.stats.SQLI,
-                    ia.stats.CMDINJ,
-                    ia.stats.XSS
-                  ],
-                }]
-              },
-              options: {
-                plugins: {
-                  legend: {
-                    display: true
-                  },
-                  tooltip: {
-                    boxPadding: 5
-                  }
-                }
-              }
-            });
-          
-        }else{
-          alert("Enable to load chart data");
-        }
+    anomaly = $('#anomaly').DataTable({
+      ajax: {
+        url: API_PATH,
+        type: "GET",
+        dataSrc: "predictions"
       },
-      error: function(err){
-  
-      }
-     });
+      dom: 'Bfrtip',
+      buttons: [
+          'csv', 'excel'
+      ],
+      columns: [
+        {'data': 'id','width': '5%'},
+        {'data': 'ip','width': '5%'},
+        {'data': 'date','width': '15%'},
+        {'data': 'url','width': '40%'},
+        {'data': 'user_agent','width': '25%'},
+        {'data': 'prediction','width': '25%'},
+        {'data': 'cluster','width': '25%'},
+      ]
+    });
+
+  });
 
 });
